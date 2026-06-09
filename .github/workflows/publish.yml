@@ -22,18 +22,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Cache Flutter pub dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.pub-cache
-          key: ${{ runner.os }}-flutter-pub-${{ hashFiles('pubspec.yaml', 'pubspec.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-flutter-pub-
-
       - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+        uses: flutter-actions/setup-flutter@v4
         with:
           channel: stable
+          cache: true
+          cache-sdk: true
 
       - name: Install dependencies
         run: flutter pub get
@@ -59,9 +53,9 @@ jobs:
           path: public
 
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v4
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           path: public
