@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: dinnerd-web
-          path: build/web
+          path: build/web/**
 
   deploy:
     name: Publish to GitHub Pages
