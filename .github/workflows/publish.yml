@@ -33,7 +33,7 @@ jobs:
         run: flutter pub get
 
       - name: Build web app
-        run: flutter build web --release
+        run: flutter build web --release --base-href ./
 
       - name: Upload web build artifact
         uses: actions/upload-artifact@v7
